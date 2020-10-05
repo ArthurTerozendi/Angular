@@ -71,5 +71,11 @@
         <input type="text" [ngModel]="nome" (ngModelChange)="nome = $event">
         <input type="text" bindon-ngModel = "nome">
         <p> Nome : {{nome}} </p>
+
+        <div>
+            <p>Oi meu nome é {{pessoa.nome}}, tenho {{pessoa.idade}} anos!</p>
+            <input type="text" [(ngModel)] = "pessoa.nome">
+            <input type="text" [(ngModel)] = "pessoa.idade">
+        </div>
     </article>
 </section>
