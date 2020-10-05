@@ -1,0 +1,17 @@
+<section>
+    <article>
+        <h3> Interpolação </h3>
+        <p> Link {{ url }} </p>
+        <p> Somando dois numeros aleatorios {{ getNum() + getNum() }} </p>
+        <p> Expressão Lógica {{ gostouCurso && getTrue() }} </p>
+    </article>
+
+    <article>
+        <h3>Property Binding</h3>
+        
+        <!-- Interpolação!-->
+        <img src="{{ urlImagem }}"/>
+        <!-- Property Binding !-->
+        <img [src]=" urlImagem "/>
+    </article>
+</section>
