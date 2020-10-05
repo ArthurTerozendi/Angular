@@ -10,13 +10,32 @@ export class DataBindingComponent {
   url : string = 'www.google.com';
   urlImagem = 'http://lorempixel.com/400/200/animals/';
   gostouCurso : boolean = true;
+  valorAtual : string;
+  valorSalvo : string;
+  mouseOver : boolean = false;
 
-  getNum(){
-    return Math.random() * 10;
+  getNum() {
+    return 3;
   }
 
-  getTrue(){
+  getTrue() {
     return true;
+  }
+
+  onKeyUp(evento : KeyboardEvent){
+    this.valorAtual = (<HTMLInputElement>evento.target).value;
+  }
+
+  setValorSalvo(evento) {
+    this.valorSalvo = evento;
+  }
+
+  mouseOverOut() {
+    this.mouseOver = !this.mouseOver;
+  }
+
+  clicar() {
+    window.alert("Você clicou no botão")
   }
 
 }
