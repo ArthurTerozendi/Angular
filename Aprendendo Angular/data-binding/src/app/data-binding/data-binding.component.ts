@@ -13,6 +13,7 @@ export class DataBindingComponent {
   valorAtual : string;
   valorSalvo : string;
   mouseOver : boolean = false;
+  nome = "abc";
 
   getNum() {
     return 3;

@@ -63,4 +63,13 @@
             <span (mouseover)="mouseOverOut()" (mouseout)="mouseOverOut()" [class.highlight]="mouseOver">Passe o mouse aqui</span>
         </div>
     </article>
+
+    <article>
+        <h3>Two Way Data Binding</h3>
+        <input type="text" [value] = "nome" (input) = "nome = $event.target.value">
+        <input type="text" [(ngModel)]="nome">
+        <input type="text" [ngModel]="nome" (ngModelChange)="nome = $event">
+        <input type="text" bindon-ngModel = "nome">
+        <p> Nome : {{nome}} </p>
+    </article>
 </section>
