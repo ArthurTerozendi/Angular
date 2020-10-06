@@ -14,6 +14,7 @@ export class DataBindingComponent {
   valorSalvo : string;
   mouseOver : boolean = false;
   nome = "abc";
+  nomeDoCurso : string = 'Angular';
 
   pessoa = {
     nome : "a",
