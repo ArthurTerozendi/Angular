@@ -1,0 +1,9 @@
+<nav *ngIf="mostrarMenu" >
+  <div>
+    <a routerLink=""> Pagina Inicial </a> <br>
+    <a routerLink="/login">Login</a> <br>
+    <a routerLink="/cursos" [queryParams]="{pagina:1}">Cursos</a> <br>
+    <a routerLink="/alunos">Alunos</a>
+    </div>
+</nav>
+<router-outlet></router-outlet>

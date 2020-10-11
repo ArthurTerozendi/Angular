@@ -1,0 +1,12 @@
+<br>
+<div>
+    <label for="usuario"> Usuario </label>
+    <input type="text" id="usuario" [(ngModel)]="usuario.nome">
+</div>
+
+<div>
+    <label for="senha"> Senha </label>
+    <input type="password" id="senha" [(ngModel)]="usuario.senha">
+</div>
+
+<button type="submit" (click)="fazerLogin()"> Login </button>
