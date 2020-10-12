@@ -1,0 +1,25 @@
+<form class="form-horizontal" [formGroup]="formulario">
+    <div class="form-group row" style="margin-left: 10px; margin-top: 10px;">
+        <div class="col-sm-6">
+            <label for="Nome"> Nome </label>
+            <input type="text" class="form-control" id="nome" formControlName="nome" [ngClass]="{'is-invalid' : submitted && hasError('nome')}">
+            <div class="invalid-feedback" *ngIf="hasError('nome')" >
+                <span> Insira o nome </span>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <label for="desc"> Descrição </label>
+            <input type="email" class="form-control" id="desc" formControlName="desc" [ngClass]="{'is-invalid' : submitted && hasError('desc')}">
+            <div class="invalid-feedback" *ngIf="hasError('desc')" >
+                <span> Insira a descrição </span>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div style="margin-left: 30px; margin-top: 10px;">
+    <button class="btn btn-primary" (click)="onSubmit()"> Salvar </button>
+
+    <button class="btn btn-secondary" (click)="onCancel()"> Cancelar </button>
+</div>

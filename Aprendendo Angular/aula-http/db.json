@@ -1,0 +1,29 @@
+{
+  "cursos": [
+    {
+      "id": 1,
+      "nome": "angular",
+      "desc": "Angular"
+    },
+    {
+      "id": 2,
+      "nome": "java",
+      "desc": "Java"
+    },
+    {
+      "id": 3,
+      "nome": "javascript",
+      "desc": "JavaScript"
+    },
+    {
+      "id": 4,
+      "nome": "typescript",
+      "desc": "TypeScript"
+    },
+    {
+      "nome": "c-sharp",
+      "desc": "C#",
+      "id": 6
+    }
+  ]
+}
