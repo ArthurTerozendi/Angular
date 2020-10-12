@@ -1,0 +1,122 @@
+<form class="form-horizontal" [formGroup]="formulario">
+    <div class="form-group row" [ngClass]="aplicaCssError('nome')">
+        <div class="col-sm-12">
+            <label for="Nome"> Nome </label>
+        </div>
+
+        <div class="col-sm-12">
+            <input type="text" class="form-control" id="nome" placeholder="Digite o nome" formControlName="nome">
+        </div>
+        <div *ngIf="verificaValidTouched('nome')" class="campoInvalido">
+            Nome é obrigatório!
+        </div>
+    </div>
+    <div class="form-group row" [ngClass]="aplicaCssError('email')">
+        <div class="col-sm-12">
+            <label for="Email"> Email </label>
+        </div>
+        <div class="col-sm-12">
+            <input type="email" class="form-control" id="email" placeholder="example@email.com" formControlName="email">
+            <div *ngIf="verificaValidTouched('email')" class="campoInvalido">
+                Email é inválido!
+            </div>
+        </div>
+    </div>
+    <div id="corrigirErro" formGroupName="endereco">
+        <div class="form-group row">
+            <div class="col-sm-3" [ngClass]="aplicaCssError('endereco.cep')">
+                <label for="cep">CEP</label>
+                <input type="text" class="form-control" id="cep" formControlName="cep" (blur)="consultaCep()">
+                <div *ngIf="verificaValidTouched('endereco.cep')" class="campoInvalido">
+                    CEP é obrigatório!
+                </div>
+            </div>
+            <div class="col-sm-3" [ngClass]="aplicaCssError('endereco.numero')">
+                <label for="numero">Número</label>
+                <input type="text" class="form-control" id="numero" formControlName="numero">
+                <div *ngIf="verificaValidTouched('endereco.numero')" class="campoInvalido">
+                    Número é obrigatório!
+                </div>
+            </div>
+            <div class="col-sm-6" [ngClass]="aplicaCssError('endereco.complemento')">
+                <label for="complemento">Complemento</label>
+                <input type="text" class="form-control" id="numero" formControlName="complemento">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-12">
+                <label for="rua"> Rua </label>
+            </div>
+
+            <div class="col-sm-12" [ngClass]="aplicaCssError('endereco.rua')">
+                <input type="text" class="form-control" id="rua" formControlName="rua">
+                <div *ngIf="verificaValidTouched('endereco.rua')" class="campoInvalido">
+                    Rua é obrigatório!
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-5" [ngClass]="aplicaCssError('endereco.bairro')">
+                <label for="bairro">Bairro</label>
+                <input type="text" class="form-control" id="bairro" formControlName="bairro">
+                <div *ngIf="verificaValidTouched('endereco.bairro')" class="campoInvalido">
+                    Bairro é obrigatório!
+                </div>
+            </div>
+            <div class="col-sm-4" [ngClass]="aplicaCssError('endereco.cidade')">
+                <label for="cidade">Cidade</label>
+                <input type="text" class="form-control" id="cidade" formControlName="cidade">
+                <div *ngIf="verificaValidTouched('endereco.cidade')" class="campoInvalido">
+                    Cidade é obrigatório!
+                </div>
+            </div>
+            <div class="col-sm-3" [ngClass]="aplicaCssError('endereco.estado')">
+                <label for="estado">Estado</label>
+                <select class="form-control" id="estado" formControlName="estado">
+                    <option [value]="estado.sigla" *ngFor="let estado of estados">
+                        {{ estado.nome }}
+                    </option>
+                </select>
+                <div *ngIf="verificaValidTouched('endereco.estado')" class="campoInvalido">
+                    Estado é obrigatório!
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-3">
+            <label for="tecnologia">Tecnologias</label>
+            <select multiple class="form-control" id="tecnologia" formControlName="tecnologia">
+                <option [value]="tecnologia.nome" *ngFor="let tecnologia of tecnologias">
+                    {{ tecnologia.desc }}
+                </option>
+            </select>
+        </div>
+        <div class="class-md-3" [ngClass]="aplicaCssError('newsletter')">
+            <label for="newsletter"> Newsletter </label> <br>
+            <div class="class-sm-4" *ngFor="let newsletter of newsletterOp" >
+                <div class="form-check form-check-inline" id="newsletter">
+                    <label class="radio-inline">
+                        <input type="radio" [value]="newsletter.nome" formControlName="newsletter"> {{ newsletter.desc }}
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="class-sm-5" [ngClass]="aplicaCssError('termos')">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="termos" formControlName="termos">
+                <label class="form-check-label" for="defaultCheck1">
+                  Eu li e aceito os termos de uso.
+                </label>
+              </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+
+    <button class="btn btn-secondary" id="botao" (click)="resetar()"> Cancelar </button>
+</form>
+<div class="container">
+    <app-form-debug [form]="formulario"> </app-form-debug>
+</div>

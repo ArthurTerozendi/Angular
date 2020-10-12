@@ -1,0 +1,12 @@
+.has-error {
+    border : 1px solid red;
+}
+#corrigirErro{
+    border: 1px;
+}
+#nomeInvalido {
+    color: red;
+    font-size: 8pt;
+    padding: 10px;
+    margin-left: 5px;
+}

@@ -1,0 +1,15 @@
+#botao{
+    margin-left: 5px;
+}
+.ng-invalid.ng-touched:not(form) {
+    border : 1px solid red;
+}
+#corrigirErro{
+    border: 1px;
+}
+.campoInvalido {
+    color: red;
+    font-size: 8pt;
+    padding: 10px;
+    margin-left: 5px;
+}
