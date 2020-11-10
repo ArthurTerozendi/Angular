@@ -1,0 +1,22 @@
+<section class="property-binding">
+    <article>
+        <h3> Interpolação </h3>
+        <p>Utilizando a <strong> Interpolação </strong> é possivel: </p>
+
+        <ul>
+            <li> Imprimir o valor de uma variável -> {{url}} </li>
+            <li> Somar números -> {{ 1 + 1 }} </li>
+            <li> Chamar alguma função/método -> {{ getTexto()}} </li>
+            <li> Realizar operações booleanas -> {{ true || false && (false && true) }} </li>
+        </ul>
+        <p>Imagem colocada utilizando Interpolação</p>
+        <img src="{{ urlImage }}">
+
+    </article>
+
+    <article>
+        <h3> Property Binding </h3>
+        <p>Imagem colocada utilizando property binding</p>
+        <img [src]="urlImage">
+    </article>
+</section>
