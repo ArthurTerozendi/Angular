@@ -34,4 +34,8 @@ export class DataBindingComponent implements OnInit {
     this.valorSalvo = valor;
   }
 
+  onMudouValor(evento){
+    console.log(evento)
+  }
+
 }
