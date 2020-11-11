@@ -11,6 +11,7 @@ export class DataBindingComponent implements OnInit {
   urlImage : String = "http://lorempixel.com/200/200/nature/"
   valorInput : String = "";
   valorSalvo : String = "";
+  texto : String = "teste";
   constructor() { }
 
   ngOnInit(): void {

@@ -57,4 +57,13 @@
         <div> {{ valorInput }} </div>
         <div> {{ valorSalvo }} </div>
     </article>
+
+    <article style="margin-top: 10px;">
+        <h3> Two-way Data Binding </h3>
+
+        <input type="text" [value]="texto" (input)="texto = $event.target.value">
+        <input type="text" [(ngModel)]="texto">
+
+        <p> Digitou: {{ texto }} </p>
+    </article>
 </section>
