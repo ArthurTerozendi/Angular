@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'aula-data-binding';
+  valor: number =  5;
+  destruir: boolean = false;
+
+  mudarValor(){
+    this.valor++;
+  }
+
+  deletarCiclo(){
+    this.destruir = true;
+  }
 }
