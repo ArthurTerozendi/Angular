@@ -48,6 +48,13 @@
     
     <article style="margin-top: 10px;">
         <h3> Event Binding </h3>
-        <button mat-stroked-button color="primary"></button>
+        <button mat-stroked-button color="primary" (click)="onClick()" > Clique aqui </button>
+        <br>
+        <input type="text" #campo (keyup)="onKeyUp($event)"
+            (keyup.enter)="salvarValor(campo.value)"
+            (blur)="salvarValor(campo.value)">
+
+        <div> {{ valorInput }} </div>
+        <div> {{ valorSalvo }} </div>
     </article>
 </section>

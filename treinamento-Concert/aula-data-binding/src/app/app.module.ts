@@ -16,13 +16,12 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatBottomSheetModule
   ],
   providers: [],
   bootstrap: [AppComponent],
-  exports: [
-    MatButtonModule,
-    MatBottomSheetModule
-  ]
+  exports: []
 })
 export class AppModule { }
