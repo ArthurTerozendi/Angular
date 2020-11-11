@@ -7,8 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'aula-data-binding';
-  valor: number =  5;
-  destruir: boolean = false;
+  valor =  5;
+  destruir = false;
 
   mudarValor(){
     this.valor++;
