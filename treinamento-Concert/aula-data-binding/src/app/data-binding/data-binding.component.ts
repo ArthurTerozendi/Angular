@@ -12,6 +12,7 @@ export class DataBindingComponent implements OnInit {
   valorInput : String = "";
   valorSalvo : String = "";
   texto : String = "teste";
+  nomeDoCurso : String = "Angular";
   constructor() { }
 
   ngOnInit(): void {
