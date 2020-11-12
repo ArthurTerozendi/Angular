@@ -7,6 +7,7 @@ import { DiretivaNgifComponent } from './diretiva-ngif/diretiva-ngif.component';
 import { DiretivaNgswitchComponent } from './diretiva-ngswitch/diretiva-ngswitch.component';
 import { DiretivaNgforComponent } from './diretiva-ngfor/diretiva-ngfor.component';
 import { DiretivasNgclassComponent } from './diretivas-ngclass/diretivas-ngclass.component';
+import { DiretivaNgstyleComponent } from './diretiva-ngstyle/diretiva-ngstyle.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { DiretivasNgclassComponent } from './diretivas-ngclass/diretivas-ngclass
     DiretivaNgifComponent,
     DiretivaNgswitchComponent,
     DiretivaNgforComponent,
-    DiretivasNgclassComponent
+    DiretivasNgclassComponent,
+    DiretivaNgstyleComponent
   ],
   imports: [
     BrowserModule,
