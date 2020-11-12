@@ -1,3 +1,4 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DiretivaNgstyleComponent implements OnInit {
 
+  ativo = false;
+  tamanhoFonte : number = 10;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onClick() {
+    this.ativo = !this.ativo;
   }
 
 }
