@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
 import { AlunosModule } from './alunos/alunos.module';
 import { CursosModule } from './cursos/cursos.module';
 import { AlunosGuard } from './guards/alunos.guard';
