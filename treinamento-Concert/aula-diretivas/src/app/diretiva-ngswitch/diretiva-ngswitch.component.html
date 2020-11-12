@@ -1,0 +1,15 @@
+<p>Teste</p>
+<div class="nav">
+    <div class="nav">
+      <button (click)="aba = 'home'"> home </button>
+      <button (click)="aba = 'perfil'"> perfil </button>
+      <button (click)="aba = 'notificações'"> notificações </button>
+    </div>
+
+    <div class="container" [ngSwitch]="aba">
+        <p *ngSwitchDefault> Pagina principal </p>
+        <p *ngSwitchCase="'perfil'"> Pagina de perfil </p>
+        <p *ngSwitchCase="'notificações'"> Pagina de notificações </p>
+    </div>
+
+</div>
