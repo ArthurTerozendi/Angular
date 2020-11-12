@@ -1,4 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
+import { LogService } from '../shared/log.service';
 
 @Injectable()
 export class CursosService {
@@ -9,11 +10,14 @@ export class CursosService {
 
   private cursos : string[] = ['Angular', 'React', 'Java'];
 
-  constructor() {
+  constructor(
+    private logService : LogService
+  ) {
     console.log("CursoService")
   }
 
   getCursos() {
+    this.logService.consoleLog("Obtentdo lista de cursos");
     return this.cursos
   }
   addCurso(curso) {
