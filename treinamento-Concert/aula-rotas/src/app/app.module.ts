@@ -15,6 +15,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { CursosModule } from './cursos/cursos.module';
+import { AlunosModule } from './alunos/alunos.module';
 
 
 
@@ -34,7 +35,8 @@ import { CursosModule } from './cursos/cursos.module';
     MatButtonModule,
     MatToolbarModule,
     MatPaginatorModule,
-    CursosModule
+    CursosModule,
+    AlunosModule
   ],
   providers: [],
   bootstrap: [AppComponent]
