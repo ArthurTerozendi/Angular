@@ -13,6 +13,7 @@ export class CursosService {
       {id: 2, nome: "Java"},
       {id: 3, nome: "JavaScript"},
       {id: 4, nome: "React"},
+      {id: 5, nome: "Angular"},
     ]
   }
   getCurso(id: number){

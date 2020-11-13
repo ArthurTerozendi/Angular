@@ -1,6 +1,11 @@
-<p> Lista de Cursos </p>
 
-<div>
-    <a *ngFor="let curso of cursos" [routerLink]="['./', curso.id]"> {{ curso.nome }} </a>
-    <router-outlet>  </router-outlet>
+
+<div class="container">
+    <p> Lista de Cursos </p>
+    <ul>
+        <li *ngFor="let curso of cursos"> <a [routerLink]="['./', curso.id]"> {{ curso.nome }} </a> </li>
+    </ul>
+
+    <p> Página {{ pag }}</p>
+    <button (click)="proxPag()"> next </button>
 </div>
