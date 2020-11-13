@@ -4,7 +4,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
@@ -36,7 +36,8 @@ import { AlunosModule } from './alunos/alunos.module';
     MatToolbarModule,
     MatPaginatorModule,
     CursosModule,
-    AlunosModule
+    AlunosModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

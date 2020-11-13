@@ -1,7 +1,17 @@
 <div class="container">
-    <main>
-        <input type="text">
-        <br>
-        <input type="password">
-    </main>
+    <form [formGroup]='form'>
+        <div class="form-group">
+            <label for="login">Usuário</label>
+            <input type="text" class="form-control-plaintext" formControlName='login' id="login">
+        </div>
+        <div class="form-group">
+            <label for="senha">Senha</label>
+            <input type="password" class="form-control-plaintext"  formControlName='senha' id="senha">
+        </div>
+        <div *ngIf="errorLogin" >
+            <span> Senha incorreta </span>
+        </div>
+        
+        <button mat-raised-button color="primary" (click)="efetuarLogin()">Entrar</button>
+    </form>
 </div>
