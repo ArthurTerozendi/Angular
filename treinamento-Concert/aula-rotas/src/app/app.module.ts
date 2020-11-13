@@ -14,9 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-import { CursosComponent } from './cursos/cursos.component';
-import { CursoDetalheComponent } from './cursos/curso-detalhe/curso-detalhe.component';
-import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
+import { CursosModule } from './cursos/cursos.module';
 
 
 
@@ -25,9 +23,6 @@ import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao
     AppComponent,
     LoginComponent,
     HomeComponent,
-    CursosComponent,
-    CursoDetalheComponent,
-    PaginaNaoEncontradaComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +33,8 @@ import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao
     MatIconModule,
     MatButtonModule,
     MatToolbarModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    CursosModule
   ],
   providers: [],
   bootstrap: [AppComponent]
