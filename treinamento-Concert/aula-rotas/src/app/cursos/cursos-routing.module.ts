@@ -5,9 +5,10 @@ import { CursosComponent } from './cursos.component';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
 
 const routes: Routes = [
-  {path: 'cursos', component: CursosComponent},
-  {path: 'cursos/:id', component: CursoDetalheComponent},
-  {path: 'naoEncontrada', component: PaginaNaoEncontradaComponent},
+  {path: 'cursos', component: CursosComponent, children: [
+    {path: ':id', component: CursoDetalheComponent},
+    {path: 'naoEncontrada', component: PaginaNaoEncontradaComponent},
+  ]}
 ];
 
 @NgModule({

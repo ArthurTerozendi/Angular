@@ -1,5 +1,9 @@
-
-
+<div class="container">
+    <p> Entre com o id do curso </p>
+    <input type="text" #idCurso>
+    <button  mat-button color="primary" [routerLink]="['./cursos', idCurso.value]"> Detalhe </button>
+    
+</div>
 <div class="container">
     <p> Lista de Cursos </p>
     <ul>
@@ -8,4 +12,8 @@
 
     <p> Página {{ pag }}</p>
     <button (click)="proxPag()"> next </button>
+</div>
+
+<div class="container">
+    <router-outlet>  </router-outlet>
 </div>

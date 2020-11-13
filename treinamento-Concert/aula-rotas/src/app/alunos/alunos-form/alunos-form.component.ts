@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-alunos-form',
@@ -6,10 +8,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./alunos-form.component.scss']
 })
 export class AlunosFormComponent implements OnInit {
-
-  constructor() { }
+  id: number;
+  inscricao: Subscription;
+  constructor(
+    private activatedRoute : ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+    this.inscricao = this.activatedRoute.params.subscribe(
+      params => {
+        this.id = params['id'];
+      }
+    );
+  }
+  ngOnDestroy() {
+    this.inscricao.unsubscribe();
   }
 
 }
