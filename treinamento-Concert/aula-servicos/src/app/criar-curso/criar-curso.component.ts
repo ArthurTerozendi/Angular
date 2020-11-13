@@ -23,5 +23,4 @@ export class CriarCursoComponent implements OnInit {
   salvarCurso(curso){
     this.cursosService.addCurso(curso);
   }
-
 }

@@ -1,1 +1,6 @@
-<p>cursos works!</p>
+<div class="container">
+    <p> Entre com o id do curso </p>
+    <input type="text" #idCurso>
+    <button mat-button [routerLink]="['../curso', idCurso.value]"> Detalhe </button>
+    <router-outlet></router-outlet>
+</div>

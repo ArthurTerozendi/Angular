@@ -13,7 +13,23 @@
 #colorButton {
     color: black;
 }
+.centralizar{
+    align-self: center;
+    margin-left: 40px ;
+}
+.container-nav{
+    padding: 20px;
+}
+.container-topo{
+    margin-top: -12px;
+}
+.container-nav:hover{
+    background-color: rgb(104, 104, 104);
+}
+.active{
+    background-color:rgb(104, 104, 104);
+}
 
-.container{
-    margin-top: 20px;
+.backgroud-sidebar{
+    background-color: black;
 }
