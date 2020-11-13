@@ -4,16 +4,18 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { CursosComponent } from './cursos/cursos.component';
-import { FormsModule } from '@angular/forms';
 import { CursoDetalheComponent } from './cursos/curso-detalhe/curso-detalhe.component';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
+
 
 
 @NgModule({
@@ -22,7 +24,8 @@ import { CursoDetalheComponent } from './cursos/curso-detalhe/curso-detalhe.comp
     LoginComponent,
     HomeComponent,
     CursosComponent,
-    CursoDetalheComponent
+    CursoDetalheComponent,
+    PaginaNaoEncontradaComponent
   ],
   imports: [
     BrowserModule,

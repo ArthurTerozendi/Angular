@@ -27,7 +27,16 @@
   </mat-sidenav>
   <mat-sidenav-content> 
     <div class="container letraPreta">
-      <router-outlet> </router-outlet>
+      <div class="container">
+        <p> Entre com o id do curso </p>
+        <input type="text" #idCurso>
+        <button  mat-button color="primary" [routerLink]="['./cursos', idCurso.value]"> Detalhe </button>
+        
+    </div>
+    <div class="container">
+        <p>teste</p>
+        <router-outlet> </router-outlet>
+    </div>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

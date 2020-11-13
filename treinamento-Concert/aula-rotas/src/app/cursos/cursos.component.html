@@ -1,6 +1,6 @@
-<div class="container">
-    <p> Entre com o id do curso </p>
-    <input type="text" #idCurso>
-    <button mat-button [routerLink]="['../curso', idCurso.value]"> Detalhe </button>
-    <router-outlet></router-outlet>
+<p> Lista de Cursos </p>
+
+<div>
+    <a *ngFor="let curso of cursos" [routerLink]="['./', curso.id]"> {{ curso.nome }} </a>
+    <router-outlet>  </router-outlet>
 </div>
