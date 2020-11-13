@@ -6,10 +6,14 @@ import { Injectable } from '@angular/core';
 export class AlunosService {
 
   private alunos= [
-    {id: 1, nome: 'aluno1'},
-    {id: 2, nome: 'aluno2'},
-    {id: 3, nome: 'aluno3'},
-    {id: 4, nome: 'aluno4'}
+    {id: 1, nome: 'Aluno1'},
+    {id: 2, nome: 'Aluno2'},
+    {id: 3, nome: 'Aluno3'},
+    {id: 4, nome: 'Aluno4'},
+    {id: 5, nome: 'Aluno5'},
+    {id: 6, nome: 'Aluno6'},
+    {id: 7, nome: 'Aluno7'},
+    {id: 8, nome: 'Aluno8'}
   ]
 
   getAlunos() {

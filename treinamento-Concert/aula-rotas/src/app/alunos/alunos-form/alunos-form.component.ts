@@ -25,4 +25,12 @@ export class AlunosFormComponent implements OnInit {
     this.inscricao.unsubscribe();
   }
 
+  salvar() {
+    console.log("salvo");
+  }
+
+  cancelar() {
+    console.log("cancelar")
+  }
+
 }
