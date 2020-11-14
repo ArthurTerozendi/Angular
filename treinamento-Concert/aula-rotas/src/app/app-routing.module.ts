@@ -12,8 +12,8 @@ const routes: Routes = [
   //{path: 'login', loadChildren: () => import('src/app/login/login.component').then(m => LoginComponent)},
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
-  {path: 'alunos', loadChildren: () => import('src/app/alunos/alunos.module').then(m => AlunosModule), canActivate: [AuthGuard],
-  canActivateChild: [AlunosGuard]},
+  {path: 'alunos', loadChildren: () => import('src/app/alunos/alunos.module').then(m => AlunosModule), canActivate: [AuthGuard]},
+  //canActivateChild: [AlunosGuard]},
   {path: 'cursos', loadChildren: () => import('src/app/cursos/cursos.module').then(m => CursosModule), canActivate: [AuthGuard],
   canActivateChild: [CursosGuard]},
   {path: '', redirectTo : 'home', pathMatch : 'full'}

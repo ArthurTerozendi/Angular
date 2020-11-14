@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AlunosService } from '../alunos.service';
 
 @Component({
   selector: 'app-alunos-form',
@@ -10,16 +11,25 @@ import { Subscription } from 'rxjs';
 export class AlunosFormComponent implements OnInit {
   id: number;
   inscricao: Subscription;
+  formMudou: boolean = false;
+  nome: string = "";
   constructor(
+    private alunosService : AlunosService,
     private activatedRoute : ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.inscricao = this.activatedRoute.params.subscribe(
-      params => {
-        this.id = params['id'];
-      }
-    );
+    console.log(this.activatedRoute)
+
+    if (this.activatedRoute.snapshot.params.id){
+      this.inscricao = this.activatedRoute.params.subscribe(
+        params => {
+          this.id = params['id'];
+
+          this.nome = this.alunosService.getAluno(this.id).nome;
+        }
+      );
+    }
   }
   ngOnDestroy() {
     this.inscricao.unsubscribe();
@@ -31,6 +41,10 @@ export class AlunosFormComponent implements OnInit {
 
   cancelar() {
     console.log("cancelar")
+  }
+
+  onInput() {
+    this.formMudou = true;
   }
 
 }
