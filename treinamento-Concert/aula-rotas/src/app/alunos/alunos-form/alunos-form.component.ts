@@ -10,7 +10,7 @@ import { AlunosService } from '../alunos.service';
 })
 export class AlunosFormComponent implements OnInit {
   id: number;
-  inscricao: Subscription;
+  inscricao: Subscription = null;
   formMudou: boolean = false;
   nome: string = "";
   constructor(
@@ -19,8 +19,6 @@ export class AlunosFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.activatedRoute)
-
     if (this.activatedRoute.snapshot.params.id){
       this.inscricao = this.activatedRoute.params.subscribe(
         params => {
@@ -32,7 +30,8 @@ export class AlunosFormComponent implements OnInit {
     }
   }
   ngOnDestroy() {
-    this.inscricao.unsubscribe();
+    if (this.inscricao != null)
+      this.inscricao.unsubscribe();
   }
 
   salvar() {
