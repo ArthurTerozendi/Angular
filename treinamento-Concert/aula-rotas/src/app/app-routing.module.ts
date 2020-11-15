@@ -16,7 +16,10 @@ const routes: Routes = [
   //canActivateChild: [AlunosGuard]},
   {path: 'cursos', loadChildren: () => import('src/app/cursos/cursos.module').then(m => CursosModule), canActivate: [AuthGuard],
   canActivateChild: [CursosGuard]},
-  {path: '', redirectTo : 'home', pathMatch : 'full'}
+  {path: '**', redirectTo : 'home', pathMatch : 'full'},
+  {path: '', redirectTo : 'home', pathMatch : 'full'},
+  
+
 ];
 
 @NgModule({

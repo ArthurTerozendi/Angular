@@ -6,18 +6,21 @@ import { CursosComponent } from './cursos.component';
 import { CursoDetalheComponent } from './curso-detalhe/curso-detalhe.component';
 import { CursosService } from './cursos.service';
 import { CursosRoutingModule } from './cursos-routing.module';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
 
 @NgModule({
   declarations: [
     CursosComponent,
-    CursoDetalheComponent
+    CursoDetalheComponent,
+    PaginaNaoEncontradaComponent
   ],
   imports: [
     CommonModule,
     CursosRoutingModule
   ],
   exports: [
-    CursosComponent
+    CursosComponent,
+    PaginaNaoEncontradaComponent
   ],
   providers: [
     CursosService
