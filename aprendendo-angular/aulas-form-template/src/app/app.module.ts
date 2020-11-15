@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { PathNotFoundComponent } from './path-not-found/path-not-found.component';
 import { HomeComponent } from './home/home.component';
-import { FormDebugComponent } from './shared/form-debug/form-debug.component';
+import { HttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,8 @@ import { FormDebugComponent } from './shared/form-debug/form-debug.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClient
   ],
   providers: [],
   bootstrap: [AppComponent]

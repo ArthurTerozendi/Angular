@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { TemplateFormsRoutingModule } from './template-forms-routing.module';
 import { TemplateFormsComponent } from './template-forms.component';
+import { HttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [TemplateFormsComponent],
@@ -11,6 +12,7 @@ import { TemplateFormsComponent } from './template-forms.component';
     CommonModule,
     TemplateFormsRoutingModule,
     FormsModule,
+    HttpClient
   ]
 })
 export class TemplateFormsModule { }
