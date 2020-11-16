@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DataFormsComponent } from './data-forms.component';
+import { FormTemplateComponent } from './form-template.component';
 
 const routes: Routes = [
-  {path: '', component: DataFormsComponent}
+  {path: '', component: FormTemplateComponent}
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class DataFormsRoutingModule { }
+export class FormTemplateRoutingModule { }

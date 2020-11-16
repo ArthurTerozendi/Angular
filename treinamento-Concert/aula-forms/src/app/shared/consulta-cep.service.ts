@@ -2,13 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ConsultaCepService {
 
   constructor(
-    private http : HttpClient
+    private httpClient : HttpClient
   ) { }
 
   consultaCep(cep : string){
@@ -17,10 +15,9 @@ export class ConsultaCepService {
       var validacep = /^[0-9]{8}$/;
 
       if(validacep.test(cep)) {
-        return this.http.get(`https://viacep.com.br/ws/${ cep }/json/`);
+        return this.httpClient.get(`https://viacep.com.br/ws/${ cep }/json/`);
       }
    }
    return of({});
   }
-
 }

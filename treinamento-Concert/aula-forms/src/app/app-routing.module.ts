@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DataFormsModule } from './data-forms/data-forms.module';
-import { TemplateFormsModule } from './template-forms/template-forms.module';
+import { FormDataModule } from './form-data/form-data.module';
+import { FormTemplateModule } from './form-template/form-template.module';
 
 const routes: Routes = [
-  {path: 'templateForm', loadChildren: () => import('src/app/template-forms/template-forms.module').then(m => TemplateFormsModule)},
-  {path: 'dataForm', loadChildren: () => import('src/app/data-forms/data-forms.module').then(m => DataFormsModule)}
+  {path: 'templateForm', loadChildren: () => import('src/app/form-template/form-template.module').then(m => FormTemplateModule)},
+  {path: 'dataForm', loadChildren: () => import('src/app/form-data/form-data.module').then(m => FormDataModule)}
 ];
 
 @NgModule({
