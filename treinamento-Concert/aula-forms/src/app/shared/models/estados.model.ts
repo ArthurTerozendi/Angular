@@ -1,5 +1,5 @@
 export interface Estados {
-    id : number;
+    id : string;
     sigla : string;
     nome : string;
 }

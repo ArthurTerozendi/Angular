@@ -73,8 +73,10 @@
             </div>
             <div class="col-sm-6 col-lg-3">
                 <label for="cidade"> Cidade </label>
-                <input formControlName="cidade" id="cidade" class="form-control"
-                    [ngClass]="aplicarCssError('endereco.cidade')">
+                <select formControlName="cidade" id="cidade" class="form-control"
+                    [ngClass]="aplicarCssError('endereco.cidade')" (change)="preencherCidades()">
+                    <option *ngFor="let cidade of cidades" [value]="cidade.nome" > {{ cidade.nome }} </option>
+                </select>
                 <div *ngIf="verificarValid('endereco.cidade')" class="has-error-div">
                     <span> Cidade é obrigatório </span>
                 </div>
@@ -82,21 +84,21 @@
             <div class="col-sm-6 col-lg-3">
                 <label for="estado"> Estado </label>
                 <select formControlName="estado" id="estado" class="form-control"
-                    [ngClass]="aplicarCssError('endereco.estado')">
-                    <option value=" {{ estado.sigla }} " *ngFor="let estado of estados"  > {{ estado.nome }} </option>
+                    [ngClass]="aplicarCssError('endereco.estado')" (change)="preencherCidades()">
+                    <option [value]="estado.sigla" *ngFor="let estado of estados" > {{ estado.nome }} </option>
                 </select>
                 <div *ngIf="verificarValid('endereco.estado')" class="has-error-div">
                     <span> Estado é obrigatório </span>
                 </div>
             </div>
             <div class="col-sm-6 col-lg-3">
-                <label for="pais"> Pais </label>
-                <select formControlName="pais" id="pais" class="form-control"
-                    [ngClass]="aplicarCssError('endereco.pais')">
-                    <option value="teste"> teste </option>
+                <label for="nacionalidade"> Nacionalidade </label>
+                <select formControlName="nacionalidade" id="nacionalidade" class="form-control"
+                    [ngClass]="aplicarCssError('endereco.nacionalidade')">
+                    <option *ngFor="let pais of paises"  value="{{ pais.sigla }}"> {{ pais.nome_pais }} </option>
                 </select>
-                <div *ngIf="verificarValid('endereco.pais')" class="has-error-div">
-                    <span> Pais é obrigatório </span>
+                <div *ngIf="verificarValid('endereco.nacionalidade')" class="has-error-div">
+                    <span> Nacionalidade é obrigatório </span>
                 </div>
             </div>
         </div>

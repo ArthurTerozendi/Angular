@@ -4,7 +4,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { ConsultaCepService } from '../shared/consulta-cep.service';
 import { DropdownService } from '../shared/dropdown.service';
+import { Cidades } from '../shared/models/cidades.model';
 import { Estados } from '../shared/models/estados.model';
+import { Paises } from '../shared/models/paises.model';
 
 @Component({
   selector: 'app-form-data',
@@ -15,6 +17,8 @@ export class FormDataComponent implements OnInit {
 
   form: FormGroup;
   estados: Estados[];
+  paises: Paises[];
+  cidades: Cidades[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -35,7 +39,7 @@ export class FormDataComponent implements OnInit {
         bairro: [null, Validators.required],
         cidade: [null, Validators.required],
         estado: [null, Validators.required],
-        pais: [null, Validators.required]
+        nacionalidade: [null, Validators.required]
       }),
     })
     this.dropdownService.getEstados().subscribe(
@@ -43,6 +47,11 @@ export class FormDataComponent implements OnInit {
         this.estados = estado
         console.log(estado);
         
+      }
+    );
+    this.dropdownService.getPaises().subscribe(
+      pais => {
+        this.paises = pais;
       }
     );
   }
@@ -92,11 +101,30 @@ export class FormDataComponent implements OnInit {
       endereco: {
         rua: dados.logradouro,
         bairro: dados.bairro,
-        cidade: dados.localidade,
         estado: dados.uf,
         complemento: dados.complemento
       },
     });
+    this.preencherCidades();
+    this.form.patchValue({
+      endereco: {
+        cidade: dados.localidade
+      }
+    })
+  }
+
+  preencherCidades() {
+    let siglaEstado : string = this.form.value.endereco.estado;
+    siglaEstado = siglaEstado.trim()
+    this.dropdownService.getEstadoID(siglaEstado).subscribe(
+      estado => {
+        this.dropdownService.getCidades(estado[0].id).subscribe(
+          cidade => {
+            this.cidades = cidade;
+          }
+        ) 
+      }
+    );
   }
 
 }
