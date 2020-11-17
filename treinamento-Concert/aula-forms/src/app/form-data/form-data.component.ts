@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { ConsultaCepService } from '../shared/consulta-cep.service';
+import { DropdownService } from '../shared/dropdown.service';
+import { Estados } from '../shared/models/estados.model';
 
 @Component({
   selector: 'app-form-data',
@@ -12,11 +14,13 @@ import { ConsultaCepService } from '../shared/consulta-cep.service';
 export class FormDataComponent implements OnInit {
 
   form: FormGroup;
+  estados: Estados[];
 
   constructor(
     private formBuilder: FormBuilder,
     private httpClient: HttpClient,
-    private consultaCepService: ConsultaCepService
+    private consultaCepService: ConsultaCepService,
+    private dropdownService : DropdownService
   ) { }
 
   ngOnInit(): void {
@@ -34,6 +38,13 @@ export class FormDataComponent implements OnInit {
         pais: [null, Validators.required]
       }),
     })
+    this.dropdownService.getEstados().subscribe(
+      estado => {
+        this.estados = estado
+        console.log(estado);
+        
+      }
+    );
   }
 
   onSubmit() {
