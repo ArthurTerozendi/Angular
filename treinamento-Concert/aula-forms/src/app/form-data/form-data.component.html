@@ -1,67 +1,71 @@
-<form>
+<form [formGroup]="form">
     <div class="row">
         <div class="col-6">
             <div class="form-group">
                 <label for="nome"> Nome </label>
-                <input type="text" name="nome" id="nome" class="form-control">
+                <input type="text" formControlName="nome" id="nome" class="form-control" [ngClass]="aplicarCssError('nome')">
             </div>
         </div>
         <div class="col-6">
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email">
+                <input type="email" class="form-control" id="email" formControlName="email" [ngClass]="aplicarCssError('email')">
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-2">
-            <div class="form-group">
-                <label for="cep">CEP</label>
-                <input type="text" class="form-control" id="cep" name="cep">
+    <div formGroupName="endereco">
+        <div class="row">
+            <div class="col-2">
+                <div class="form-group">
+                    <label for="cep">CEP</label>
+                    <input type="text" class="form-control" id="cep" formControlName="cep" [ngClass]="aplicarCssError('endereco.cep')">
+                </div>
+            </div>
+            <div class="col-5">
+                <div class="form-group">
+                    <label for="rua">Rua</label>
+                    <input type="text" class="form-control" id="rua" formControlName="rua" [ngClass]="aplicarCssError('endereco.rua')">
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="form-group">
+                    <label for="num">Número</label>
+                    <input type="text" class="form-control" id="num" formControlName="num" [ngClass]="aplicarCssError('endereco.num')">
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                    <label for="complemento">Complemento</label>
+                    <input type="text" class="form-control" id="complemento" formControlName="complemento">
+                </div>
             </div>
         </div>
-        <div class="col-5">
-            <div class="form-group">
-                <label for="rua">Rua</label>
-                <input type="text" class="form-control" id="rua" name="rua">
+        <div class="row">
+            <div class="col-3">
+                <label for="bairro"> Bairro </label>
+                <input type="text" class="form-control" id="bairro" formControlName="bairro" [ngClass]="aplicarCssError('endereco.bairro')">
             </div>
-        </div>
-        <div class="col-2">
-            <div class="form-group">
-                <label for="num">Número</label>
-                <input type="text" class="form-control" id="num" name="num">
+            <div class="col-3">
+                <label for="cidade"> Cidade </label>
+                <select formControlName="cidade" id="cidade" class="form-control" [ngClass]="aplicarCssError('endereco.cidade')">
+                    <option value="teste"> teste </option>
+                </select>
             </div>
-        </div>
-        <div class="col-3">
-            <div class="form-group">
-                <label for="complemento">Complemento</label>
-                <input type="text" class="form-control" id="complemento" name="complemento">
+            <div class="col-3">
+                <label for="estado"> Estado </label>
+                <select formControlName="estado" id="estado" class="form-control" [ngClass]="aplicarCssError('endereco.estado')">
+                    <option value="teste"> teste </option>
+                </select>
+            </div>
+            <div class="col-3">
+                <label for="pais"> Pais </label>
+                <select formControlName="pais" id="pais" class="form-control" [ngClass]="aplicarCssError('endereco.pais')">
+                    <option value="teste"> teste </option>
+                </select>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-3">
-            <label for="bairro"> Bairro </label>
-            <input type="text" class="form-control" id="bairro" name="bairro">
-        </div>
-        <div class="col-3">
-            <label for="cidade"> Cidade </label>
-            <select name="cidade" id="cidade" class="form-control">
-                <option value="teste"> teste </option>
-            </select>
-        </div>
-        <div class="col-3">
-            <label for="estado"> Estado </label>
-            <select name="estado" id="estado" class="form-control">
-                <option value="teste"> teste </option>
-            </select>
-        </div>
-        <div class="col-3">
-            <label for="pais"> Pais </label>
-            <select name="pais" id="pais" class="form-control">
-                <option value="teste"> teste </option>
-            </select>
-        </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+    <button type="button" class="btn btn-warning resetar" (click)="resetarForm()">Resetar</button>
 </form>
