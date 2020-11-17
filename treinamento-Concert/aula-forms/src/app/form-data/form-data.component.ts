@@ -55,6 +55,7 @@ export class FormDataComponent implements OnInit {
   }
 
   aplicarCssError(campo){
+    console.log('test')
     return{
       'has-error': this.verificarValid(campo)
     }
