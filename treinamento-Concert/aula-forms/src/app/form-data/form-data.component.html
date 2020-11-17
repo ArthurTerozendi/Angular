@@ -27,7 +27,7 @@
                 <div class="form-group">
                     <label for="cep">CEP</label>
                     <input type="text" class="form-control" id="cep" formControlName="cep"
-                        [ngClass]="aplicarCssError('endereco.cep')">
+                        [ngClass]="aplicarCssError('endereco.cep')" (blur)="consultaCep()" >
                 </div>
                 <div *ngIf="verificarValid('endereco.cep')" class="has-error-div">
                     <span> CEP é obrigatório </span>

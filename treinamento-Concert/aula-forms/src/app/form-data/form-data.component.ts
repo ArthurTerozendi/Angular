@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { ConsultaCepService } from '../shared/consulta-cep.service';
+
 @Component({
   selector: 'app-form-data',
   templateUrl: './form-data.component.html',
@@ -13,7 +15,8 @@ export class FormDataComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private consultaCepService: ConsultaCepService
   ) { }
 
   ngOnInit(): void {
@@ -50,19 +53,39 @@ export class FormDataComponent implements OnInit {
   }
 
   resetarForm() {
-    console.log('resetou')
     this.form.reset();
   }
 
-  aplicarCssError(campo){
-    console.log('test')
-    return{
+  aplicarCssError(campo) {
+    return {
       'has-error': this.verificarValid(campo)
     }
   }
 
   verificarValid(campo) {
     return !this.form.get(campo).valid && this.form.get(campo).touched
+  }
+
+  consultaCep() {
+    if (this.form.value.endereco.cep) {
+      this.consultaCepService.consultaCep(this.form.value.endereco.cep).subscribe(
+        dados => {
+          this.preencherCampos(dados)
+        }
+      )
+    }
+  }
+
+  preencherCampos(dados) {
+    this.form.patchValue({
+      endereco: {
+        rua: dados.logradouro,
+        bairro: dados.bairro,
+        cidade: dados.localidade,
+        estado: dados.uf,
+        complemento: dados.complemento
+      },
+    });
   }
 
 }
