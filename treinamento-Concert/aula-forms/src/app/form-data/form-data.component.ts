@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { map } from 'rxjs/operators';
 
 import { ConsultaCepService } from '../shared/consulta-cep.service';
 import { DropdownService } from '../shared/dropdown.service';
 import { Cidades } from '../shared/models/cidades.model';
 import { Estados } from '../shared/models/estados.model';
 import { Paises } from '../shared/models/paises.model';
+import { VerificaEmailService } from './services/verifica-email.service';
 
 @Component({
   selector: 'app-form-data',
@@ -27,13 +28,17 @@ export class FormDataComponent implements OnInit {
     private formBuilder: FormBuilder,
     private httpClient: HttpClient,
     private consultaCepService: ConsultaCepService,
-    private dropdownService : DropdownService
+    private dropdownService : DropdownService,
+    private verificaEmailService : VerificaEmailService
   ) { }
 
   ngOnInit(): void {
+
+    //this.verificaEmailService.verificarEmail('email@email.com').subscribe();
+
     this.form = this.formBuilder.group({
       nome: [null, Validators.required],
-      email: [null, [Validators.required, Validators.email]],
+      email: [null, [Validators.required, Validators.email], [this.validarEmail.bind(this)]],
       confirmarEmail: [null, [this.equalsTo('email')]],
       endereco: this.formBuilder.group({
         cep: [null, [Validators.required, this.cepValidator]],
@@ -204,6 +209,12 @@ export class FormDataComponent implements OnInit {
       return null;
     }
     return validator
+  }
+
+  validarEmail(formControl : FormControl) {
+    return this.verificaEmailService.verificarEmail(formControl.value).pipe(
+      map(emailExiste => emailExiste ? { emailInvalido : true } : null)
+    )
   }
 
 }

@@ -19,6 +19,15 @@
             <div *ngIf="verificarValid('email')" class="has-error-div">
                 <span> Email é obrigatório </span>
             </div>
+            <div *ngIf="form.get('email').status === 'PENDING'" class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div *ngIf="form.get('email').status === 'VALID'" class="has-valid-div">
+                <span> Email válido </span>
+            </div>
+            <div *ngIf="form.get('email').hasError('emailInvalido')" class="has-error-div">
+                <span> Email já cadastrado </span>
+            </div>
         </div>
         <div class="col-sm-12 col-lg-4">
             <div class="form-group">
