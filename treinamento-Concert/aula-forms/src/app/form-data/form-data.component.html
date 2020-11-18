@@ -1,5 +1,5 @@
 <form [formGroup]="form">
-    <div class="row">
+    <div class="row" style="margin-top: 10px;">
         <div class="col-sm-12 col-lg-6">
             <div class="form-group">
                 <label for="nome"> Nome </label>
@@ -23,17 +23,17 @@
     </div>
     <div formGroupName="endereco">
         <div class="row">
-            <div class="col-sm-5 col-lg-2">
+            <div class="col-4 col-sm-5 col-lg-2">
                 <div class="form-group">
                     <label for="cep">CEP</label>
                     <input type="text" class="form-control" id="cep" formControlName="cep"
-                        [ngClass]="aplicarCssError('endereco.cep')" (blur)="consultaCep()" >
+                        [ngClass]="aplicarCssError('endereco.cep')" (blur)="consultaCep()">
                 </div>
                 <div *ngIf="verificarValid('endereco.cep')" class="has-error-div">
                     <span> CEP é obrigatório </span>
                 </div>
             </div>
-            <div class="col-sm-6 col-lg-5">
+            <div class="col-8 col-sm-7 col-lg-5">
                 <div class="form-group">
                     <label for="rua">Rua</label>
                     <input type="text" class="form-control" id="rua" formControlName="rua"
@@ -43,7 +43,7 @@
                     <span> Rua é obrigatório </span>
                 </div>
             </div>
-            <div class="col-sm-4 col-lg-2">
+            <div class="col-4 col-sm-6 col-lg-2">
                 <div class="form-group">
                     <label for="num">Número</label>
                     <input type="text" class="form-control" id="num" formControlName="num"
@@ -53,7 +53,7 @@
                     <span> Número é obrigatório </span>
                 </div>
             </div>
-            <div class="col-sm-5 col-lg-3">
+            <div class="col-8 col-sm-6 col-lg-3">
                 <div class="form-group">
                     <label for="complemento">Complemento</label>
                     <input type="text" class="form-control" id="complemento" formControlName="complemento">
@@ -61,7 +61,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-6 col-lg-3">
+            <div class="col-6 col-sm-6 col-lg-3">
                 <div class="form-group">
                     <label for="bairro"> Bairro </label>
                     <input type="text" class="form-control" id="bairro" formControlName="bairro"
@@ -71,31 +71,31 @@
                     <span> Bairro é obrigatório </span>
                 </div>
             </div>
-            <div class="col-sm-6 col-lg-3">
+            <div class="col-6 col-sm-6 col-lg-3">
                 <label for="cidade"> Cidade </label>
                 <select formControlName="cidade" id="cidade" class="form-control"
                     [ngClass]="aplicarCssError('endereco.cidade')" (change)="preencherCidades()">
-                    <option *ngFor="let cidade of cidades" [value]="cidade.nome" > {{ cidade.nome }} </option>
+                    <option *ngFor="let cidade of cidades" [value]="cidade.nome"> {{ cidade.nome }} </option>
                 </select>
                 <div *ngIf="verificarValid('endereco.cidade')" class="has-error-div">
                     <span> Cidade é obrigatório </span>
                 </div>
             </div>
-            <div class="col-sm-6 col-lg-3">
+            <div class="col-6 col-sm-6 col-lg-3">
                 <label for="estado"> Estado </label>
                 <select formControlName="estado" id="estado" class="form-control"
                     [ngClass]="aplicarCssError('endereco.estado')" (change)="preencherCidades()">
-                    <option [value]="estado.sigla" *ngFor="let estado of estados" > {{ estado.nome }} </option>
+                    <option [value]="estado.sigla" *ngFor="let estado of estados"> {{ estado.nome }} </option>
                 </select>
                 <div *ngIf="verificarValid('endereco.estado')" class="has-error-div">
                     <span> Estado é obrigatório </span>
                 </div>
             </div>
-            <div class="col-sm-6 col-lg-3">
+            <div class="col-6 col-sm-6 col-lg-3">
                 <label for="nacionalidade"> Nacionalidade </label>
                 <select formControlName="nacionalidade" id="nacionalidade" class="form-control"
                     [ngClass]="aplicarCssError('endereco.nacionalidade')">
-                    <option *ngFor="let pais of paises"  value="{{ pais.nome_pais }}"> {{ pais.nome_pais }} </option>
+                    <option *ngFor="let pais of paises" value="{{ pais.nome_pais }}"> {{ pais.nome_pais }} </option>
                 </select>
                 <div *ngIf="verificarValid('endereco.nacionalidade')" class="has-error-div">
                     <span> Nacionalidade é obrigatório </span>
@@ -103,11 +103,29 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-12">
+            <label for="frameworks"> Frameworks </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="checkbox" class="col-4 col-sm-4 col-lg-4" formArrayName="frameworks"
+            *ngFor="let item of getFrameworksControls(); let i = index">
+            <label class="checkbox-inline" [ngClass]="aplicarCssError('frameworks')">
+                <input type="checkbox" [formControlName]="i" > {{ frameworks[i] }}
+            </label>
+        </div>
+        <div class="col-12">
+            <div *ngIf="verificarValid('frameworks')" class="has-error-div">
+                <span> É necessário pelo menos um framework </span>
+            </div>
+        </div>
+    </div>
     <div class="form-group">
         <div class="col-sm-12 col-lg-12">
             <div class="checkbox">
-                <input type="checkbox" formControlName="termos" id="termos" (change)="permitirSubmit()">
-                <label for="termos"> Eu li e aceito os termos de uso. </label>
+                <label for="termos"> <input type="checkbox" id="termos" (change)="permitirSubmit()"> Eu li e aceito os
+                    termos de uso. </label>
             </div>
         </div>
     </div>

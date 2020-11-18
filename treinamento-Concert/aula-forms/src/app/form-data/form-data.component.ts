@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { ConsultaCepService } from '../shared/consulta-cep.service';
 import { DropdownService } from '../shared/dropdown.service';
@@ -20,6 +21,7 @@ export class FormDataComponent implements OnInit {
   paises: Paises[];
   cidades: Cidades[];
   termos = false;
+  frameworks = ['Angular', 'React', 'Jquery', 'Vue', 'Sencha', 'Zxing']
 
   constructor(
     private formBuilder: FormBuilder,
@@ -40,9 +42,9 @@ export class FormDataComponent implements OnInit {
         bairro: [null, Validators.required],
         cidade: [null, Validators.required],
         estado: [null, Validators.required],
-        nacionalidade: [null, Validators.pattern('true')]
+        nacionalidade: [null, Validators.required]
       }),
-      termos: [null, Validators.required]
+      frameworks: this.buildFrameworks()
     })
     this.dropdownService.getEstados().subscribe(
       estado => {
@@ -59,10 +61,17 @@ export class FormDataComponent implements OnInit {
 
   onSubmit() {
     if (this.form.valid) {
-      console.log(this.form.valid);
-      this.httpClient.post('http://httpbin.org/post', JSON.stringify(this.form.value)).subscribe(
+      let valueSubmit = Object.assign({}, this.form.value);
+
+      valueSubmit = Object.assign(valueSubmit, {
+        frameworks: valueSubmit.frameworks.map(
+          (v, i) => v ? this.frameworks[i] : null
+        ).filter(v => v !== null)
+      })
+      this.httpClient.post('http://httpbin.org/post', JSON.stringify(valueSubmit)).subscribe(
         dados => {
-          this.resetarForm();
+          console.log(dados)
+          //this.resetarForm();
         },
         (error: any) => alert('erro')
       );
@@ -77,6 +86,9 @@ export class FormDataComponent implements OnInit {
   }
 
   aplicarCssError(campo) {
+    if (campo === 'frameworks') {
+      return {'has-error-label': this.verificarValid(campo)}
+    }
     return {
       'has-error': this.verificarValid(campo)
     }
@@ -129,6 +141,33 @@ export class FormDataComponent implements OnInit {
 
   permitirSubmit(){
     this.termos = !this.termos;
+  }
+
+  buildFrameworks() {
+    const values = this.frameworks.map( v => new FormControl(false));
+
+    return this.formBuilder.array(values, this.requiredMinCheckBox(1));
+  }
+
+  getFrameworksControls() {
+    return this.form.get('frameworks') ? (<FormArray>this.form.get('frameworks')).controls : null;
+  }
+
+  requiredMinCheckBox(min = 1) {
+    const validator = (formArray : FormArray) => {
+      /*let totalChecked = 0;
+      const values = formArray.controls;
+      for (let i = 0; i < values.length; i++) {
+        if (values[i].value){
+          totalChecked += 1; 
+        }
+      }*/
+      const totalChecked = formArray.controls.map(v => v.value).reduce((total, atual) => atual ? total + atual : total, 0)
+      return totalChecked >= 1 ? null : { required: true }
+    };
+
+
+    return validator
   }
 
 }
