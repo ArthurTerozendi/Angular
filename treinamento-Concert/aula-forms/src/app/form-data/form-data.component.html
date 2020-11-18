@@ -1,6 +1,6 @@
 <form [formGroup]="form">
     <div class="row" style="margin-top: 10px;">
-        <div class="col-sm-12 col-lg-6">
+        <div class="col-sm-12 col-lg-4">
             <div class="form-group">
                 <label for="nome"> Nome </label>
                 <input type="text" formControlName="nome" id="nome" class="form-control"
@@ -10,7 +10,7 @@
                 <span> Nome é obrigatório </span>
             </div>
         </div>
-        <div class="col-sm-12 col-lg-6">
+        <div class="col-sm-12 col-lg-4">
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" class="form-control" id="email" formControlName="email"
@@ -18,6 +18,16 @@
             </div>
             <div *ngIf="verificarValid('email')" class="has-error-div">
                 <span> Email é obrigatório </span>
+            </div>
+        </div>
+        <div class="col-sm-12 col-lg-4">
+            <div class="form-group">
+                <label for="confirmarEmail">Confirme o email</label>
+                <input type="confirmarEmail" class="form-control" id="confirmarEmail" formControlName="confirmarEmail"
+                    [ngClass]="aplicarCssError('confirmarEmail')">
+            </div>
+            <div *ngIf="verificarValid('confirmarEmail')" class="has-error-div">
+                <span> Os emails não são iguais </span>
             </div>
         </div>
     </div>
