@@ -19,6 +19,7 @@ export class FormDataComponent implements OnInit {
   estados: Estados[];
   paises: Paises[];
   cidades: Cidades[];
+  termos = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -39,13 +40,13 @@ export class FormDataComponent implements OnInit {
         bairro: [null, Validators.required],
         cidade: [null, Validators.required],
         estado: [null, Validators.required],
-        nacionalidade: [null, Validators.required]
+        nacionalidade: [null, Validators.pattern('true')]
       }),
+      termos: [null, Validators.required]
     })
     this.dropdownService.getEstados().subscribe(
       estado => {
         this.estados = estado
-        console.log(estado);
         
       }
     );
@@ -61,8 +62,7 @@ export class FormDataComponent implements OnInit {
       console.log(this.form.valid);
       this.httpClient.post('http://httpbin.org/post', JSON.stringify(this.form.value)).subscribe(
         dados => {
-          console.log(dados)
-          //this.resetarForm();
+          this.resetarForm();
         },
         (error: any) => alert('erro')
       );
@@ -125,6 +125,10 @@ export class FormDataComponent implements OnInit {
         ) 
       }
     );
+  }
+
+  permitirSubmit(){
+    this.termos = !this.termos;
   }
 
 }

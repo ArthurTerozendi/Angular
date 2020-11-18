@@ -95,7 +95,7 @@
                 <label for="nacionalidade"> Nacionalidade </label>
                 <select formControlName="nacionalidade" id="nacionalidade" class="form-control"
                     [ngClass]="aplicarCssError('endereco.nacionalidade')">
-                    <option *ngFor="let pais of paises"  value="{{ pais.sigla }}"> {{ pais.nome_pais }} </option>
+                    <option *ngFor="let pais of paises"  value="{{ pais.nome_pais }}"> {{ pais.nome_pais }} </option>
                 </select>
                 <div *ngIf="verificarValid('endereco.nacionalidade')" class="has-error-div">
                     <span> Nacionalidade é obrigatório </span>
@@ -103,7 +103,14 @@
             </div>
         </div>
     </div>
-
-    <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+    <div class="form-group">
+        <div class="col-sm-12 col-lg-12">
+            <div class="checkbox">
+                <input type="checkbox" formControlName="termos" id="termos" (change)="permitirSubmit()">
+                <label for="termos"> Eu li e aceito os termos de uso. </label>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!termos" (click)="onSubmit()">Submit</button>
     <button type="button" class="btn btn-warning resetar" (click)="resetarForm()">Resetar</button>
 </form>
