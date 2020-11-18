@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { map } from 'rxjs/operators';
+import { empty } from 'rxjs';
+import { distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators';
 
 import { ConsultaCepService } from '../shared/consulta-cep.service';
 import { DropdownService } from '../shared/dropdown.service';
@@ -63,6 +65,15 @@ export class FormDataComponent implements OnInit {
         this.paises = pais;
       }
     );
+
+    this.form.get('endereco.cep').statusChanges
+    .pipe(
+      distinctUntilChanged(),
+      tap(console.log),
+      switchMap(status => status === 'VALID' ? this.consultaCepService.consultaCep(this.form.get('endereco.cep').value) : empty())
+    )
+    .subscribe(
+      dados => dados ? this.preencherCampos(dados) : {});
   }
 
   onSubmit() {
@@ -105,12 +116,20 @@ export class FormDataComponent implements OnInit {
   }
 
   consultaCep() {
-    if (this.form.value.endereco.cep) {
-      this.consultaCepService.consultaCep(this.form.value.endereco.cep).subscribe(
-        dados => {
-          this.preencherCampos(dados)
+    let cep = this.form.value.endereco.cep;
+    cep = cep.replace(/\D/g, '');
+    if (cep !== '') {
+      const validacep = /^[0-9]{8}$/;
+
+      if (validacep.test(cep)) {
+        if (this.form.value.endereco.cep) {
+          this.consultaCepService.consultaCep(this.form.value.endereco.cep).subscribe(
+            dados => {
+              this.preencherCampos(dados)
+            }
+          )
         }
-      )
+      }
     }
   }
 
