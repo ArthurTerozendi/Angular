@@ -1,0 +1,28 @@
+
+.example-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #eee;
+}
+.centralizar{
+  align-self: center;
+  margin-left: 40px ;
+  margin-right: 40px;
+}
+.container-nav{
+  padding: 20px;
+}
+.container-topo{
+  margin-top: -12px;
+}
+.container-nav:hover{
+  background-color: rgba(131, 45, 211, 0.219);
+  color: #eee;
+}
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
