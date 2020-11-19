@@ -1,11 +1,11 @@
 <form [formGroup]="form">
     <div class="row" style="margin-top: 10px;">
+        
+        
+        
         <div class="col-sm-12 col-lg-4">
-            <div class="form-group">
-                <label for="nome"> Nome </label>
-                <input type="text" formControlName="nome" id="nome" class="form-control"
-                    [ngClass]="aplicarCssError('nome')">
-            </div>
+            <app-input-field formControlName="nome" [classCss]="aplicarCssError('nome')" id="nome" label="Nome" type="text" classDiv=""> </app-input-field>
+           
             <div *ngIf="verificarValid('nome')" class="has-error-div">
                 <span> Nome é obrigatório </span>
             </div>
