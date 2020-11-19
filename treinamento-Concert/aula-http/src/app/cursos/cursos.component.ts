@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { CursosService } from './cursos.service';
 import { Curso } from './models/curso';
 
@@ -10,16 +11,15 @@ import { Curso } from './models/curso';
 })
 export class CursosComponent implements OnInit {
 
-  curso: Curso[];
+  //curso: Curso[];
+  cursos$: Observable<Curso[]>
 
   constructor(
     private cursosService : CursosService
   ) { }
 
   ngOnInit(): void {
-    this.cursosService.list().subscribe(
-      dados => this.curso = dados
-    );
+    this.cursos$ = this.cursosService.list();
   }
 
 }
