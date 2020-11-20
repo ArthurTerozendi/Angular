@@ -1,0 +1,15 @@
+<div class="row">
+    
+<div class="col-sm-12 col-lg-12">
+    <mat-form-field appearance="outline" [formGroup]="form">
+        <mat-label>Nome </mat-label>
+            <input matInput placeholder="Digite o nome" formControlName="nome">
+        <mat-error *ngIf="form.get('nome').invalid">{{ getErrorMessage('Nome') }}</mat-error>
+    </mat-form-field>
+</div>
+<div class="col-sm-12 col-lg-12">
+    <button mat-raised-button class="btn" color="primary" (click)="onSubmit()"> Submit </button>
+    <button mat-raised-button class="btn" (click)="onCancel()"> Cancelar </button>
+    <button mat-raised-button class="btn" color="accent" (click)="onResetar()"> Resetar </button>
+</div>
+</div>

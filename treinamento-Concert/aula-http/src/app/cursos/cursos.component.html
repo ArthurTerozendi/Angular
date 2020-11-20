@@ -1,8 +1,11 @@
 <mat-toolbar>
     <span> Cursos </span>
     <span class="example-spacer"></span>
-    <button mat-icon-button class="btn" color="primary">
+    <button mat-icon-button class="btn" color="primary" [routerLink]="'/novo'">
         <mat-icon> add </mat-icon>
+    </button>
+    <button mat-icon-button class="btn" color="primary" (click)="recarregar()">
+        <mat-icon> refresh </mat-icon>
     </button>
 </mat-toolbar>
 <div *ngIf="cursos$ | async as curso; else loading">
@@ -10,7 +13,7 @@
         <mat-list-item>
             {{ curso.id }} - {{ curso.nome }}
             <span class="example-spacer"></span>
-            <button mat-icon-button class="btn" color="accent">
+            <button mat-icon-button class="btn" color="accent" [routerLink]="['/editar/', curso.id]">
                 <mat-icon> edit </mat-icon>
             </button>
             <button mat-icon-button color="warn" class="btn">
@@ -23,9 +26,19 @@
 <div>
     <ng-template #loading class="container">
         <div class="d-flex justify-content-center">
-            <div class="spinner-border m-5" role="status">
-                <span class="sr-only">Loading...</span>
+            <div *ngIf="error$ | async; else loadingNoError">
+                <mat-list>
+                    <mat-list-item>
+                        Erro ao carregar curso. Tente novamente mais tarde.
+                    </mat-list-item>
+                    <mat-divider></mat-divider>
+                </mat-list>    
             </div>
+            <ng-template #loadingNoError>
+                <div class="spinner-border m-5" role="status" >
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </ng-template>
         </div>
     </ng-template>
 </div>
