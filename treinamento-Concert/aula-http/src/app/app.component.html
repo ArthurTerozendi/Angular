@@ -17,6 +17,12 @@
         <span> Cursos </span>
       </button>
     </div>
+    <div class="container container-nav" routerLinkActive="active">
+      <button mat-icon-button class="btn" color="primary" (click)="sidenav.toggle()" [routerLink]="'/rxjs'">
+        <mat-icon> subscriptions </mat-icon>
+        <span> RxJS POC </span>
+      </button>
+    </div>
   </mat-sidenav>
   <mat-sidenav-content>
     <button mat-icon-button class="btn" color="primary" (click)="sidenav.toggle()">
