@@ -3,3 +3,6 @@
     <label class="custom-file-label" for="file" id="fileLabel"> {{ nomeArquivo }} </label>
     <div class="invalid-feedback">Example invalid custom file feedback</div>
 </div>
+<div class="container">
+    <button class="btn" (click)="onUpload()" [disabled]="!files"> Enviar </button>
+</div>
