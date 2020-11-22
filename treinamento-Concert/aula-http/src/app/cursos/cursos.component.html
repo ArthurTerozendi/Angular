@@ -16,8 +16,8 @@
             <button mat-icon-button class="btn" color="accent" [routerLink]="['/editar/', curso.id]">
                 <mat-icon> edit </mat-icon>
             </button>
-            <button mat-icon-button color="warn" class="btn">
-                <mat-icon> remove </mat-icon>
+            <button mat-icon-button color="warn" class="btn" (click)="remover(curso)">
+                <mat-icon> delete </mat-icon>
             </button>
         </mat-list-item>
         <mat-divider></mat-divider>

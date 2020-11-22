@@ -24,20 +24,40 @@ export class CursosFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.activatedRoute.snapshot);
+    /*console.log(this.activatedRoute.snapshot);
     if (!(this.activatedRoute.snapshot.url[0].path == 'novo')) {
       let id = this.activatedRoute.snapshot.params.id;
       const cursos$ = this.cursosService.loadByID(id);
       cursos$.subscribe(curso => { this.preencherCampo(curso) })
-    }
+    }*/
+    const curso = this.activatedRoute.snapshot.data['curso'];
     this.form = this.formBuilder.group({
-      id: [null],
-      nome: [null, [Validators.required]]
+      id: [curso.id],
+      nome: [curso.nome, [Validators.required]]
     })
   }
 
   onSubmit() {
-    if (!(this.activatedRoute.snapshot.url[0].path == 'novo')) {
+
+
+    let msgSuccess = "Curso salvo com sucesso"
+    let msgError = "Erro ao salvar o curso"
+
+    if (this.form.value.id) {
+      msgSuccess = "Editado com sucesso"
+      msgError = "Erro ao salvar a edição do curso"
+    }
+    if (this.form.valid){
+      this.cursosService.save(this.form.value).subscribe(
+        sucess => this.alertModalService.showAlertSuccess(msgSuccess),
+        error => this.alertModalService.showAlertDanger(msgError),
+        () => this.router.navigate(['../cursos'])
+      );
+    } else {
+      this.form.markAllAsTouched();
+    }
+    
+    /*if (!(this.activatedRoute.snapshot.url[0].path == 'novo')) {
       if (this.form.valid) {
         this.cursosService.update(this.form.value).subscribe(
           sucess => this.alertModalService.showAlertSuccess('Editado com sucesso'),
@@ -56,7 +76,7 @@ export class CursosFormComponent implements OnInit {
       } else {
         this.form.markAllAsTouched();
       }
-    }
+    }*/
 
   }
 
@@ -72,11 +92,11 @@ export class CursosFormComponent implements OnInit {
     return `${campo} é obrigatório`
   }
 
-  preencherCampo(campos) {
+  /*preencherCampo(campos) {
     this.form.patchValue({
       id: campos.id,
       nome: campos.nome
     });
-  }
+  }*/
 
 }

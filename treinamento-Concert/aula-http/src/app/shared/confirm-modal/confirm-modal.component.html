@@ -1,0 +1,16 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h3 class="modal-title"> {{ title }} </h3>
+    </div>
+    <div class="modal-body">
+        <p> {{ msg }} </p>
+    </div>
+    <div class="modal-footer">
+        <button mat-mini-fab color="warn" class="btn" (click)="onConfirm()">
+            <mat-icon> check </mat-icon>
+        </button>
+        <button mat-mini-fab class="btn" (click)="onClose()">
+            <mat-icon> close </mat-icon>
+        </button>
+    </div>
+</div>
