@@ -23,6 +23,12 @@
         <span> RxJS POC </span>
       </button>
     </div>
+    <div class="container container-nav" routerLinkActive="active">
+      <button mat-icon-button class="btn" color="primary" (click)="sidenav.toggle()" [routerLink]="'/upload'">
+        <mat-icon> upload </mat-icon>
+        <span> Upload </span>
+      </button>
+    </div>
   </mat-sidenav>
   <mat-sidenav-content>
     <button mat-icon-button class="btn" color="primary" (click)="sidenav.toggle()">
