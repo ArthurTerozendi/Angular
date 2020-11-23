@@ -1,6 +1,8 @@
+import { HttpEvent, HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { filterResponse, uploadProgress } from '../shared/rxjs-operators';
 import { UploadFileService } from './upload-file.service';
 
 @Component({
@@ -14,7 +16,7 @@ export class UploadFileComponent implements OnInit {
 
   files: Set<File>;
   inscricao : Subscription
-
+  progress = 0;
 
   constructor(
     private uploadFileService : UploadFileService
@@ -38,13 +40,33 @@ export class UploadFileComponent implements OnInit {
 
   onUpload() {
     if (this.files && this.files.size > 0) {
-      this.inscricao =  this.uploadFileService.upload(this.files, environment.BASE_URL + '/uploads').subscribe(
-        response => console.log('upload concluído')
+      this.inscricao =  this.uploadFileService.upload(this.files, environment.BASE_URL + '/upload')
+      .pipe(
+        uploadProgress(progres => {
+          console.log(progres);
+          this.progress = progres;
+        }),
+        filterResponse()
       )
+      .subscribe(response => console.log('Upload Concluído'));
+      /*.subscribe(
+        (event: HttpEvent<Object>) => {
+          console.log(event);
+          if (event.type === HttpEventType.Response){
+            console.log('upload concluído');
+          } else if (event.type === HttpEventType.UploadProgress) {
+            const percentDone = Math.round((event.loaded * 100)/event.total)
+            this.progress = percentDone;
+          }
+        }
+      )*/
     }
   }
 
-  ngOnDestroy() {
-    this.inscricao.unsubscribe();
+  onDownloadExcel() {
+
+  }
+  onDownloadPdf() {
+
   }
 }
