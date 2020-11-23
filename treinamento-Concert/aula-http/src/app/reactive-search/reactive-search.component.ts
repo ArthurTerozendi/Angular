@@ -16,47 +16,48 @@ export class ReactiveSearchComponent implements OnInit {
   readonly SEARCH_URL = 'https://api.cdnjs.com/libraries';
   resultados$: Observable<any>;
   total: number;
-  fields = "name,version,description,homepage"
+  readonly FIELDS = "name,version,description,homepage"
 
   constructor(
     private httpClient: HttpClient
   ) { }
 
-  ngOnInit(): void {
-    this.resultados$ = this.queryFild.valueChanges.pipe(
-      tap(),
+  ngOnInit() {
+    this.resultados$ = this.queryFild.valueChanges
+    .pipe(
       map(value => value.trim()),
       filter(value => value.length > 1),
       debounceTime(200),
       distinctUntilChanged(),
-      switchMap( value => this.httpClient.get(this.SEARCH_URL, {
+      // tap(value => console.log(value)),
+      switchMap(value => this.httpClient.get(this.SEARCH_URL, {
         params: {
           search: value,
-          fields: this.fields
+          fields: this.FIELDS
         }
       })),
-      tap((res: any)=> this.total = res.total),
-      map((res: any)=> res.result)
-    )
+      tap((res: any) => this.total = res.total),
+      map((res: any) => res.results)
+    );
   }
 
   onSearch() {
-    
+    const fields = 'name,description,version,homepage';
     let value = this.queryFild.value;
-    if (value && value.trim() !== '') {
-      value = value.trim()
-      
-     
+    if (value && (value = value.trim()) !== '') {
+      const params_ = {
+        search: value,
+        fields: fields
+      };
       let params = new HttpParams();
       params = params.set('search', value);
-      params = params.set('fields', this.fields);
-
-      this.resultados$ = this.httpClient.get(this.SEARCH_URL, { params }).pipe(
-        tap(
-          (res: any) => this.total = res.total
-        ),
-        map((res: any) => res.results)
-      );
+      params = params.set('fields', fields);
+      this.resultados$ = this.httpClient
+        .get(this.SEARCH_URL, { params })
+        .pipe(
+          tap((res: any) => (this.total = res.total)),
+          map((res: any) => res.results)
+        );
     }
   }
 
